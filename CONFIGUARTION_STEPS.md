@@ -3,6 +3,7 @@
 Steps:
 
 1. Preparem la targeta SD
+
 Primer descarreguem Raspberry Pi Imaginer i connectem la targeta SD al lector SD, i aquest al nostre ordinador.
 
 Obrim l'aplicació Raspberry Pi Imager per gravar el sistema operatiu a la targeta. Escollirem el sistema operatiu Raspberry Pi OS (64-bit), el model de la nostra placa i seleccionarem la nostra targeta microSD.
