@@ -14,7 +14,7 @@ Instalarem la llibreria utiliutzant un entorn virtual:
 
 Mitjançant un registre públic instalarem la llibreria: git clone https://github.com/nfcpy/nfcpy
 
-6. Configurar libnfc
+6. Configurar libnfc 
 
 Ens hem d’assegurar que la configuració de libnfc és correcte perquè pynfc es basa en la llibreria libnfc. 
 Primer crearem l'arxiu de configuració per libnfc: sudo mkdir -p /etc/nfc/devices.d’ i ‘sudo nano /etc/nfc/libnfc.conf’. 
@@ -23,6 +23,8 @@ Dins de l’arxiu escriurem: ‘device.name = "PN532" device.connstring = "pn532
 
 Verificarem si el dispositiu està connectat amb la sentencia: sudo i2cdetect -y 1
 
+*codi disponible a codi_libnfc*
+
 (6. Instal·lació de RFIDOt)
 
 - Actualitzar el sistema. sudo apt update i sudo apt upgrade
@@ -30,3 +32,5 @@ Verificarem si el dispositiu està connectat amb la sentencia: sudo i2cdetect -y
 - Clonar el repositori: git clone https://github.com/AdamLaurie/RFIDIOt.git
 - Navegar al directori: cd RFIDIOt
 - Instalar RFIDIOt: sudo python3 setup.py install
+
+*codi disponible a codi_rfidiot*
