@@ -3,4 +3,7 @@ Software:
   PuTTY
   RealVNC Viewer
   Advanced IP Scanner
-Library: https://github.com/nfcpy/nfcpy
+Libraries: 
+  nfcpy: https://github.com/nfcpy/nfcpy
+  libnfc: https://github.com/nfc-tools/libnfc
+  rfidiot: https://github.com/AdamLaurie/RFIDIOt
