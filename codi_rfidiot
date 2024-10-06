@@ -1,0 +1,30 @@
+import time
+import rfidio
+
+def main():
+    try:
+        # Inicializar el lector NFC
+        rfid = rfidio.rfidiot()
+        print("Esperando una tarjeta NFC...")
+
+        while True:		# Intentar leer una tarjeta
+            tag = rfid.read()
+            if tag:
+                print("ID de la tarjeta detectada:", tag)
+                time.sleep(1)  # Espera un segundo antes de leer de nuevo
+            else:
+                print("No se detectó ninguna tarjeta.")
+                time.sleep(1)  # Espera un segundo antes de volver a comprobar
+
+    except KeyboardInterrupt:
+        print("Saliendo del programa...")
+    except Exception as e:
+        print("Ocurrió un error:", e)
+    finally:
+        rfid.close()
+
+if __name__ == "__main__":
+    main()
+
+error: No module named ‘rfidio’
+
