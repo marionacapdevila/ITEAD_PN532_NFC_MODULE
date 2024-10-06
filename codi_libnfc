@@ -1,0 +1,17 @@
+import pynfc 
+
+def main(): 	# Inicia la conexión con el módulo NFC 
+  try: 
+    with pynfc.ContactlessFrontend('pn532_i2c:/dev/i2c-1') as clf: 
+    print("Esperando una tarjeta NFC...") 
+    while True: 		# Espera a que una tarjeta sea detectada 
+      tag = clf.connect(rdwr={'on-connect': lambda tag: False}) 
+        if tag: 			# Muestra el ID de la tarjeta 
+          print("ID de la tarjeta:", tag.uid) 
+  except Exception as e: 
+    print(f"Error: {e}") 
+
+if __name__ == "__main__": 
+  main()
+
+error: module ‘pynfc’ has no atribute ‘ContactlessFrontend’
