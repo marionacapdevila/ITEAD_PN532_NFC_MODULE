@@ -1,0 +1,32 @@
+
+4. Preparar el sistema
+
+Primer verificarem que el sistema està tot instalat correctament i actualitzat. Escriurem: ‘sudo apt update’ i ‘sudo apt upgrade’. A més, instalarem les dependencies: ‘sudo apt install python3 python3-pip python3-dev libnfc-bin libnfc5 libnfc-dev’
+
+5. Instalar la llibreria Pynfc
+
+Instalarem la llibreria utiliutzant un entorn virtual:
+- Instalem virtual env: ‘sudo apt-get install python3-virtualenv’
+- Creem un nou entorn virtual: ‘virtualenv myenv’
+- Activem l’entorn virtual: ‘source myenv/bin/activate
+- Iinstalarem les dependencies del sistema libnfc: ‘sudo apt-get update’ i ‘sudo apt-get install libnfc-bin libnfc-dev’
+- Instralem pynfc dins l’entorn: ‘pip install pynfc’
+
+Mitjançant un registre públic instalarem la llibreria: git clone https://github.com/nfcpy/nfcpy
+
+6. Configurar libnfc
+
+Ens hem d’assegurar que la configuració de libnfc és correcte perquè pynfc es basa en la llibreria libnfc. 
+Primer crearem l'arxiu de configuració per libnfc: sudo mkdir -p /etc/nfc/devices.d’ i ‘sudo nano /etc/nfc/libnfc.conf’. 
+Ara configurarem la connexió del dispositiu adequada al mode amb el que treballarem, en el nostre cas serà I2C. 
+Dins de l’arxiu escriurem: ‘device.name = "PN532" device.connstring = "pn532_i2c:/dev/i2c-1"’ i ‘allow_intrusive_scan = true’
+
+Verificarem si el dispositiu està connectat amb la sentencia: sudo i2cdetect -y 1
+
+(6. Instal·lació de RFIDOt)
+
+- Actualitzar el sistema. sudo apt update i sudo apt upgrade
+- Instalar dependencies que pugui necessitar: sudo apt install python3 python3-pip python3-dev git libnfc-dev
+- Clonar el repositori: git clone https://github.com/AdamLaurie/RFIDIOt.git
+- Navegar al directori: cd RFIDIOt
+- Instalar RFIDIOt: sudo python3 setup.py install
