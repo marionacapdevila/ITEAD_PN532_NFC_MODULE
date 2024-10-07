@@ -4,6 +4,7 @@ Software:
   RealVNC Viewer
   Advanced IP Scanner
 Libraries: 
+  Adafruit_CircuitPython_PN532: https://github.com/adafruit/Adafruit_CircuitPython_PN532
   nfcpy: https://github.com/nfcpy/nfcpy
   libnfc: https://github.com/nfc-tools/libnfc
   rfidiot: https://github.com/AdamLaurie/RFIDIOt
