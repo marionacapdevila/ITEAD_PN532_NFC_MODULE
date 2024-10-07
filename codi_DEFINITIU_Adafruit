@@ -1,0 +1,28 @@
+import time
+import board
+import busio
+from digitalio import DigitalInOut
+from adafruit_pn532.i2c import PN532_I2C
+
+# Configuración I2C
+i2c = busio.I2C(board.SCL, board.SDA)
+
+# Inicialización del PN532
+pn532 = PN532_I2C(i2c, debug=False)
+
+# Configurar la velocidad de lectura (largura de datos)
+pn532.SAM_configuration()
+print("Esperant una targeta NFC...")
+
+while True:
+    # Leer la tarjeta
+    uid = pn532.read_passive_target(timeout=0.5)
+
+    if uid is None:
+        print("No s’ha detectat cap targeta")
+        continue
+
+    uid_hex = ‘ ‘.join([f'{i:02X}' for i in uid])
+    print("Targeta detectada!")
+    print(f"UID de la targeta: {uid_hex}")
+    time.sleep(1)  # Esperar antes de leer otra vez
