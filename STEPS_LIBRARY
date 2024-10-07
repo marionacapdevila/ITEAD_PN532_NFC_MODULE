@@ -3,7 +3,25 @@
 
 Primer verificarem que el sistema està tot instalat correctament i actualitzat. Escriurem: ‘sudo apt update’ i ‘sudo apt upgrade’. A més, instalarem les dependencies: ‘sudo apt install python3 python3-pip python3-dev libnfc-bin libnfc5 libnfc-dev’
 
-5. Instalar la llibreria Pynfc
+5. Crear entorn virtual
+
+- Instal·lem la llibreria utilitzant un entorn virtual:
+- Instalem virtual env: sudo apt-get install python3-virtualenv
+- Creem un nou entorn virtual; virtualenv myenv
+- Activem l’entorn virtual: source myenv/bin/activate
+
+
+6. Instal·lació de Adafruit_CircuitPython
+
+Mitjançant l’entorn virtual i pip he instal·lat una altra llibreria de GitHub: Adafruit_CircuitPython_PN532.
+
+- Entrem al entorn: source myenv/bin/activate
+- Instal·lem les dependències: pip3 install adafruit-circuitpython-pn532
+- Detectem el dispositiu: sudo i2cdetect -y 1
+
+-----------------------------------------------------Altres llibreries provades---------------------------------------------------
+
+(5. Instalar la llibreria Pynfc)
 
 Instalarem la llibreria utiliutzant un entorn virtual:
 - Instalem virtual env: ‘sudo apt-get install python3-virtualenv’
@@ -14,7 +32,7 @@ Instalarem la llibreria utiliutzant un entorn virtual:
 
 Mitjançant un registre públic instalarem la llibreria: git clone https://github.com/nfcpy/nfcpy
 
-6. Configurar libnfc 
+(6. Configurar libnfc)
 
 Ens hem d’assegurar que la configuració de libnfc és correcte perquè pynfc es basa en la llibreria libnfc. 
 Primer crearem l'arxiu de configuració per libnfc: sudo mkdir -p /etc/nfc/devices.d’ i ‘sudo nano /etc/nfc/libnfc.conf’. 
