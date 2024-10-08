@@ -1,28 +1,25 @@
-import time
-import board
-import busio
-from digitalio import DigitalInOut
-from adafruit_pn532.i2c import PN532_I2C
+import time    #Proporciona funcions relacionades amb el temps, el necessitem per fer retards
+import board    #Import d'un modul d'Adafruit per facilitar la referencia als pins d'entrada/sortida del microcontrolador
+import busio    #Permet treballar amb el els busos de comunicació, en aquest cas utilitzat el I2C
+from adafruit_pn532.i2c import PN532_I2C     #aqquest importa la classe que permet controlar el PN532 utilitzant I2C
 
-# Configuración I2C
-i2c = busio.I2C(board.SCL, board.SDA)
+i2c = busio.I2C(board.SCL, board.SDA)    #s'inicialitza el bus I2C utilitzant el pin del clock i el de dades
+                                            #amb aquests pins ens comunicarem amb el controlador
 
-# Inicialización del PN532
-pn532 = PN532_I2C(i2c, debug=False)
+pn532 = PN532_I2C(i2c, debug=False)       #Inicializació del lector amb la connexió anterior. 
+                                            #el debug=false desactiva missatges de depuració
 
-# Configurar la velocidad de lectura (largura de datos)
-pn532.SAM_configuration()
+pn532.SAM_configuration()                #Configurar la velocidad de lectura a lectura passiva
 print("Esperant una targeta NFC...")
 
-while True:
-    # Leer la tarjeta
-    uid = pn532.read_passive_target(timeout=0.5)
+while True:                                             #Es crea un bucle infinit intentant llegir
+    uid = pn532.read_passive_target(timeout=0.5)        # Llegeix si hi ha targeta, esperant 0,5segons, torna None si no hi ha
 
     if uid is None:
         print("No s’ha detectat cap targeta")
-        continue
+        continue                                    #torna a l'inici del bucle
 
-    uid_hex = ‘ ‘.join([f'{i:02X}' for i in uid])
-    print("Targeta detectada!")
+    uid_hex = ‘ ‘.join([f'{i:02X}' for i in uid])    #agafa el byte i de uid i el posa en hexadecimal de dos digits,
+    print("Targeta detectada!")                            # amb el join els guardem tots a uid_hex
     print(f"UID de la targeta: {uid_hex}")
-    time.sleep(1)  # Esperar antes de leer otra vez
+    time.sleep(1)                                  # Esperem abans de tornar a llegir
