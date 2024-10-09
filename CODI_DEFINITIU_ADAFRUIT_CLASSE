@@ -14,7 +14,7 @@ class NFCReader:
     #Mateixa inicialització, afegim self
     print("Esperando una tarjeta NFC...")
 
-	def llegirNFC(self):
+def llegirNFC(self):
     uid = self.pn532.read_passive_target(timeout=0.5) #afegim self
      
     if uid is None:
