@@ -1,0 +1,16 @@
+A tenir en compte:
+- Executar el codi DINS l’entorn virtual creat, on s’ha instal.lat la llibreria. Si això no es fa, apareix l’error: ModuleNotFoundError: No module named ‘board’
+- Utilitzar un cable Ethernet amb extrem USB. Jo vaig utilitzar amb extrem tipus-C, el mateix que per l'alimentació de l'ordinador i era incòmode treballar
+  aixì perquè o carregava l'ordinador o emconnectava a la Raspi.
+
+Experiència i problemes trobats:
+La realització d'aquesta primera part del treball de PBE ha sigut molt plena. Ara soc capaç de treballar amb la RaspberryPi, insta.lar llibreries i tenir 
+petites nocions de Python. A més de ser capaç d'entendre com ens podem connectar mitjançant Wifi/Ethernet i d'una manera pràctica poder assolir els 
+conneixements sobre la xarxa apresos durant els primers anys de la carrera.
+
+- LLIBRERIES
+He provat diverses llibreries (les quals es troben a la memòria i a aquest projecte de GitHub). Vaig començar treballant amb Adafruit, però quan buscar la configuració de pins per fer el codi, vaig trobar que el nom de la llibreria feia referència al nom d'una marca de perifèric NFC en concret. En veure que no coincidia amb el meu (ITEAD) i que el codi no 
+semblava que funcionés, vaig decidir buscar un altre [aquí no ho sabia, pero estava tennint un problema amb el mode]. Vaig probar unes altres dos, cap resultat. L'últim dia vaig tornar a la primera llibreria [amb el problema del mode solucionat]
+
+- Mode SPI/I2C/UART
+El perifèric té tres modes diferents amb diferents configuracions: SPI/I2C/UART. Vaig començar amb la SPI pq fent recerca em va semblar la mes adient per treballar, però en tornar al manual de l'assignatura vaig veure que havia de fer-ho amb I2C.
