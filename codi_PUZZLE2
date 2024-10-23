@@ -1,0 +1,75 @@
+import gi
+import threading
+import time
+from puzzle1 import NFCReader  
+
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, GLib
+
+class RFIDReaderApp(Gtk.Window):
+    def __init__(self):
+        #Inicializació de la finestra principal
+        Gtk.Window.__init__(self, title="RFID Reader")
+        self.set_border_width(10)
+        self.set_default_size(400, 200)
+
+        # Crear el layout principal
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
+
+        # Label per demanar login
+        self.label = Gtk.Label(label="Escaneja la targeta UPC per fer login")
+        vbox.pack_start(self.label, True, True, 0)
+
+        #TextView per veure el UID de la targeta
+        self.textview = Gtk.TextView()
+        self.textview.set_editable(False)
+        self.textbuffer = self.textview.get_buffer()
+        vbox.pack_start(self.textview, True, True, 0)
+
+        # Botó per netejar el TextView
+        self.clear_button = Gtk.Button(label="Clear")
+        self.clear_button.connect("clicked", self.on_clear_clicked)
+        vbox.pack_start(self.clear_button, True, True, 0)
+
+        # Botó per veure el text del TextView
+        self.display_button = Gtk.Button(label="Display")
+        self.display_button.connect("clicked", self.on_display_clicked)
+        vbox.pack_start(self.display_button, True, True, 0)
+
+        # Inicialitzar el lector NFC
+        self.nfc_reader = NFCReader(debug=False)
+
+        # Iniciar el fil per llegir
+        self.thread = threading.Thread(target=self.read_rfid_thread, daemon=True)
+        self.thread.start()
+
+    def on_clear_clicked(self, widget):# neteja contingut del TextView
+        self.textbuffer.set_text("")
+
+    def on_display_clicked(self, widget):
+        # Mostrar un mensaje de espera en el TextView
+        self.textbuffer.set_text("Esperant targeta...")
+
+    def read_rfid_thread(self):
+        #fil auxiliar per llegir la targeta NFC sense bloquejar la interfaz
+        while True:
+            uid_hex = self.nfc_reader.read_uid()  #función amb un timeout, no bloqueja
+            if uid_hex is not None:
+                GLib.idle_add(self.update_textview, uid_hex) #actualitza la id
+            time.sleep(1)  
+
+    def update_textview(self, uid_hex):
+        #Quan escanejem una targeta
+        self.textbuffer.set_text(f"UID de la tarjeta: {uid_hex}")
+        return False  # Detener el idle_add una vez que se ha ejecutado
+
+#Funció principal para executar la aplicació
+def main():
+    app = RFIDReaderApp() #Creem la app
+    app.connect("destroy", Gtk.main_quit)
+    app.show_all()
+    Gtk.main()
+
+if __name__ == "__main__":
+    main()
