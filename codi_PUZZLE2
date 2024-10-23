@@ -23,36 +23,19 @@ class RFIDReaderApp(Gtk.Window):
         self.textbuffer = self.textview.get_buffer()
         vbox.pack_start(self.textview, True, True, 0)
 
-        self.clear_button = Gtk.Button(label="Clear")
-        self.clear_button.connect("clicked", self.on_clear_clicked)
-        vbox.pack_start(self.clear_button, True, True, 0)
-
-        self.display_button = Gtk.Button(label="Display")
-        self.display_button.connect("clicked", self.on_display_clicked)
-        vbox.pack_start(self.display_button, True, True, 0)
-
         self.nfc_reader = NFCReader(debug=False)
 
         self.thread = threading.Thread(target=self.read_rfid_thread, daemon=True)
         self.thread.start()
 
-    def on_clear_clicked(self, widget):
-        self.textbuffer.set_text("")
-
-    def on_display_clicked(self, widget):
-        self.textbuffer.set_text("Esperant targeta...")
-
     def read_rfid_thread(self):
-	uid_hex=None
-        while True:
-            uid_hex = self.nfc_reader.read_uid()  
-            if uid_hex is not None:
-                GLib.idle_add(self.update_textview, uid_hex) 
- time.sleep(1)  
-
-    def update_textview(self, uid_hex):
-        self.textbuffer.set_text(f"UID de la tarjeta: {uid_hex}")
-        return False 
+	while True:	
+        	self.textview.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1,0,0,1)) 
+            	uid_hex = self.nfc_reader.read_uid()  
+            	if uid_hex is not None:
+                	self.textbuffer.set_text(f"UID de la tarjeta: {uid_hex}")
+self.textview.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0,0,1,1)) 
+ 	time.sleep(1) 
 
 def main():
     app = RFIDReaderApp() 
@@ -62,3 +45,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
