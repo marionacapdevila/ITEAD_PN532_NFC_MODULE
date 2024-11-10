@@ -34,8 +34,8 @@ class RFIDReaderApp(Gtk.Window):
             	uid_hex = self.nfc_reader.read_uid()  
             	if uid_hex is not None:
                 	self.textbuffer.set_text(f"UID: {uid_hex}")
-self.textview.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0,0,1,1)) 
- 	time.sleep(1) 
+			self.textview.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0,0,1,1)) 
+ 		time.sleep(1) 
 
 def main():
     app = RFIDReaderApp() 
