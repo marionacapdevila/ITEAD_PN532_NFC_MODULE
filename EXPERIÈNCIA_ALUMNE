@@ -7,6 +7,10 @@ Experiència i problemes trobats:
 La realització d'aquesta primera part del treball de PBE ha sigut molt plena. Ara soc capaç de treballar amb la RaspberryPi, insta.lar llibreries i tenir 
 petites nocions de Python. A més de ser capaç d'entendre com ens podem connectar mitjançant Wifi/Ethernet i d'una manera pràctica poder assolir els 
 conneixements sobre la xarxa apresos durant els primers anys de la carrera.
+La segona part consisteix en implementar una interfaç gràfica al nostre lector NFC que canvia de color per donar una senyal visual per indicar l’estat de 
+lectura. He hagut de modificar el codi del puzzle 1 per fer que sigui una classe, aprendre a treballar amb fils i a implementar diferents elements gràfics 
+que s’apropen més a el desenvolupament d’una aplicació, en comptes de treballar a la terminal.
+
 
 - LLIBRERIES
 He provat diverses llibreries (les quals es troben a la memòria i a aquest projecte de GitHub). Vaig començar treballant amb Adafruit, però quan buscar la configuració de pins per fer el codi, vaig trobar que el nom de la llibreria feia referència al nom d'una marca de perifèric NFC en concret. En veure que no coincidia amb el meu (ITEAD) i que el codi no 
